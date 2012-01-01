@@ -14,8 +14,8 @@ content = RSS::Maker.make(version) do |m|
   m.channel.description = "News at ARA Wanted Board"
   m.items.do_sort = true
 
-  i = m.items.new_item
-  resp.search('//table[@class="articleList"]/tbody/tr[1]').each {|r|
+  resp.search('//table[@class="articleList"]/tbody/tr').each {|r|
+    i = m.items.new_item
     i.title = r.search('td[@class="title "]')[0].inner_html.strip
     i.date = Time.parse(r.search('td[@class="date"]')[0].inner_html.strip)
   }
