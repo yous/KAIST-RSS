@@ -25,7 +25,7 @@ server.mount_proc("/") do |req, res|
     resp.search('//table[@class="articleList"]/tbody/tr').each do |r|
       m.items.new_item do |item|
         title = r.at('td[@class="title "]') or r.at('td[@class="title  deleted"]')
-        item.title = title.inner_html.strip
+        item.title = title.inner_text.strip
         item.date = Time.parse(r.at('td[@class="date"]').inner_html.strip)
       end
     end
