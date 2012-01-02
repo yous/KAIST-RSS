@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require "rss/maker"
 require "mechanize"
 
