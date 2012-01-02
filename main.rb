@@ -4,7 +4,7 @@ require "rss/maker"
 
 a = Mechanize.new
 
-server = WEBrick::HTTPServer.new :BindAddress => "192.168.80.140", :Port => (ARGV[0] or 8888).to_i
+server = WEBrick::HTTPServer.new :Port => (ARGV[0] or 8888).to_i
 server.mount_proc("/") do |req, res|
   res["Last-Modified"] = Time.now
   res["Cache-Control"] = "no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
