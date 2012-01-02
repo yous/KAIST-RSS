@@ -2,7 +2,7 @@ require "rss/maker"
 require "mechanize"
 
 class ARA_RSS
-  attr_accessor :rss
+  attr_reader :rss
 
   def initialize(version = "2.0")
     @version = version
@@ -10,10 +10,9 @@ class ARA_RSS
   end
 
   def data
-    get.to_xml
+    @rss.to_xml
   end
 
-  private
   def get
     @rss = RSS::Maker.make(@version) do |m|
       m.channel.title = "ARA Wanted RSS Feed"
