@@ -4,7 +4,7 @@ require "rss/maker"
 
 a = Mechanize.new
 
-server = WEBrick::HTTPServer.new :BindAddress => "192.168.80.140", :Port => (ARGV[0] or 8888).to_i
+server = WEBrick::HTTPServer.new :Port => (ARGV[0] or 8888).to_i
 server.mount_proc("/") do |req, res|
   res["Last-Modified"] = Time.now
   res["Cache-Control"] = "no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
@@ -23,7 +23,7 @@ server.mount_proc("/") do |req, res|
 
     (1..10).each do |page_no|
       resp = a.get "http://ara.kaist.ac.kr/board/Wanted/?page_no=#{page_no}"
-      resp.search('//table[@class="articleList"]/tbody/tr').each {|r|
+      resp.search('//table[@class="articleList"]/tbody/tr').each do |r|
         i = m.items.new_item
         i.title = r.search('td[@class="title "]')[0]
         i.title = if i.title == nil
@@ -32,7 +32,7 @@ server.mount_proc("/") do |req, res|
                     i.title.inner_html.strip
                   end
         i.date = Time.parse(r.search('td[@class="date"]')[0].inner_html.strip)
-      }
+      end
     end
   end
 
