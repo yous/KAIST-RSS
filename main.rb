@@ -24,7 +24,7 @@ server.mount_proc("/") do |req, res|
     resp = a.get "http://ara.kaist.ac.kr/board/Wanted/"
     resp.search('//table[@class="articleList"]/tbody/tr').each do |r|
       m.items.new_item do |item|
-        title = r.at('td[@class="title "]') or r.at('td[@class="title  deleted"]')
+        title = (r.at('td[@class="title "]') or r.at('td[@class="title  deleted"]'))
         item.title = title.inner_text.strip
         item.date = Time.parse(r.at('td[@class="date"]').inner_html.strip)
         item.guid.content = r.at('td[@class="articleid hidden"]').inner_text.strip
