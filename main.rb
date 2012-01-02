@@ -29,6 +29,7 @@ server.mount_proc("/") do |req, res|
         item.date = Time.parse(r.at('td[@class="date"]').inner_html.strip)
         item.guid.content = r.at('td[@class="articleid hidden"]').inner_text.strip
         item.guid.isPermaLink = false
+        item.link = "http://ara.kaist.ac.kr/board/Wanted/#{item.guid.content}"
       end
     end
   end
