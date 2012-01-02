@@ -4,7 +4,7 @@ require "rss/maker"
 
 a = Mechanize.new
 
-server = WEBrick::HTTPServer.new :BindAddress => "192.168.80.140", :Port => (ARGV[0] or 8888).to_i
+server = WEBrick::HTTPServer.new :Port => (ARGV[0] or 8888).to_i
 server.mount_proc("/") do |req, res|
   res["Last-Modified"] = Time.now
   res["Cache-Control"] = "no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
@@ -22,16 +22,13 @@ server.mount_proc("/") do |req, res|
     m.items.do_sort = true
 
     resp = a.get "http://ara.kaist.ac.kr/board/Wanted/"
-    resp.search('//table[@class="articleList"]/tbody/tr').each {|r|
-      i = m.items.new_item
-      i.title = r.search('td[@class="title "]')[0]
-      i.title = if i.title == nil
-                  r.search('td[@class="title  deleted"]')[0].inner_html.strip
-                else
-                  i.title.inner_html.strip
-                end
-      i.date = Time.parse(r.search('td[@class="date"]')[0].inner_html.strip)
-    }
+    resp.search('//table[@class="articleList"]/tbody/tr').each do |r|
+      m.items.new_item do |item|
+        title = r.at('td[@class="title "]') or r.at('td[@class="title  deleted"]')
+        item.title = title.inner_html.strip
+        item.date = Time.parse(r.at('td[@class="date"]').inner_html.strip)
+      end
+    end
   end
 
   res.body = content.to_xml
