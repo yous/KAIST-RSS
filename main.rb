@@ -25,12 +25,8 @@ server.mount_proc("/") do |req, res|
       resp = a.get "http://ara.kaist.ac.kr/board/Wanted/?page_no=#{page_no}"
       resp.search('//table[@class="articleList"]/tbody/tr').each do |r|
         m.items.new_item do |item|
-          item.title = r.search('td[@class="title "]')[0]
-          item.title = if item.title == nil
-                      r.search('td[@class="title  deleted"]')[0].inner_html.strip
-                    else
-                      item.title.inner_html.strip
-                    end
+          title = r.search('td[@class="title "]')[0] || r.search('td[@class="title  deleted"]')[0]
+          item.title = title.inner_html.strip
           item.date = Time.parse(r.search('td[@class="date"]')[0].inner_html.strip)
         end
       end
