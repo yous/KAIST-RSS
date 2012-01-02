@@ -21,17 +21,19 @@ server.mount_proc("/") do |req, res|
     m.channel.description = "News at ARA Wanted Board"
     m.items.do_sort = true
 
-    resp = a.get "http://ara.kaist.ac.kr/board/Wanted/"
-    resp.search('//table[@class="articleList"]/tbody/tr').each {|r|
-      i = m.items.new_item
-      i.title = r.search('td[@class="title "]')[0]
-      i.title = if i.title == nil
-                  r.search('td[@class="title  deleted"]')[0].inner_html.strip
-                else
-                  i.title.inner_html.strip
-                end
-      i.date = Time.parse(r.search('td[@class="date"]')[0].inner_html.strip)
-    }
+    (1..10).each do |page_no|
+      resp = a.get "http://ara.kaist.ac.kr/board/Wanted/?page_no=#{page_no}"
+      resp.search('//table[@class="articleList"]/tbody/tr').each {|r|
+        i = m.items.new_item
+        i.title = r.search('td[@class="title "]')[0]
+        i.title = if i.title == nil
+                    r.search('td[@class="title  deleted"]')[0].inner_html.strip
+                  else
+                    i.title.inner_html.strip
+                  end
+        i.date = Time.parse(r.search('td[@class="date"]')[0].inner_html.strip)
+      }
+    end
   end
 
   res.body = content.to_xml
