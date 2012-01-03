@@ -293,15 +293,11 @@
             </td>
             <td class="title ">
                 
-                    <a href="/board/Wanted/274232/?page_no=1">
-                        
-                            신축2일반 이랑 신축2원룸 교환하실분 계신가요??
-                            
-                        
-                    </a>
+                    신축2일반 이랑 신축2원룸 교환하실분 계신가요??
+                    
                 
             </td>
-            <td class="recRead"><span class="rec">+0 -1</span> / 29</td>
+            <td class="recRead"><span class="rec">+0 -1</span> / 31</td>
             <td class="date">2012/01/03</td>
         </tr>
         
@@ -342,20 +338,20 @@
             </div>
             <div id="sideContents">
                 
-                <dl id="myInfo">
-                    <dt>MY INFO</dt>
+                <dl id="loginBox">
+                    <dt>Log In</dt>
                     <dd>
-                        <ul>
-                            <li><a href="/account/">내 정보</a></li>
-                            <li><a href="/account/password_modify/">비밀번호 수정</a></li>
-                            <li><a href="/message/inbox/">쪽지함</a><span class="sideRight" id="countNewMessage">0</span></li>
-                            <li><a href="/blacklist/">블랙리스트</a></li>
-                            <li><strong><a href="/account/logout/">로그아웃</a></strong></li>
-                        </ul>
+                        <form action="/account/login/" method="post" name="login">
+                            <input type="hidden" name="current_page_url" value="/main/" />
+                            <ul>
+                                <li><label> Username </label> <input type="text" name="username" id="miniLoginID" /></li>
+                                <li><label> Password </label> <input type="password" name="password" id="miniLoginPassword" /></li>
+                                <li><a href="#">로그인</a> | <a href="/account/register/">회원가입</a></li>
+                                <li><input type="submit" id="miniLoginSubmit" class="hidden"/></li>
+                            </ul>
+                        </form>
                     </dd>
                 </dl>
-                
-                
                 
             </div>
             <div class="cb"></div>
@@ -416,9 +412,9 @@
         <div id="user_popup">
             <ul>
                 <li id="user_popup_username"></li>
-                    <li class="user_popup_function"><a id="user_popup_send_message" class="thickbox" href="#TB_inline?&amp;width=490&amp;height=565&amp;inlineId=message_popup&amp;modal=true">Send Message</a></li>
+                    <li class="user_popup_function hidden"><a id="user_popup_send_message" class="thickbox" href="#TB_inline?&amp;width=490&amp;height=565&amp;inlineId=message_popup&amp;modal=true">Send Message</a></li>
                     <li class="user_popup_function"><a id="user_popup_user_information" class="thickbox" href="#TB_inline?height=size&amp;width=size&amp;inlineId=user_information_popup&amp;modal=true">User Information</a></li>
-                <li class="user_popup_function"><a id="user_popup_add_blacklist" href="#">Add Blacklist</a></li>
+                <li class="user_popup_function hidden"><a id="user_popup_add_blacklist" href="#">Add Blacklist</a></li>
             </ul>
         </div>
 
