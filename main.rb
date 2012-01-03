@@ -1,7 +1,7 @@
 require "webrick"
 require "./lib/ararss"
 
-server = WEBrick::HTTPServer.new :Port => (ARGV[0] or 8888).to_i
+server = WEBrick::HTTPServer.new :Port => (ARGV[1] or 8888).to_i
 
 server.mount_proc("/") do |req, res|
   res["Last-Modified"] = Time.now
@@ -12,7 +12,7 @@ server.mount_proc("/") do |req, res|
   res.status = 200
   res["Content-Type"] = "text/xml"
 
-  rss = ARA_RSS.new
+  rss = ARA_RSS.new(ARGV[0] || "Wanted")
   res.body = rss.data
 end
 
