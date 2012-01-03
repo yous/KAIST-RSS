@@ -1,4 +1,6 @@
 require "rss/maker"
+require "rubygems"
+require "bundler/setup"
 require "mechanize"
 
 class ARA_RSS
