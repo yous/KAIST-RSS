@@ -1,5 +1,5 @@
 require "webrick"
-require "lib/ararss"
+require "./lib/ararss"
 
 server = WEBrick::HTTPServer.new :Port => (ARGV[0] or 8888).to_i
 

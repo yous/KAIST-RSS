@@ -1,6 +1,6 @@
 require "mechanize"
 require "fakeweb"
-require "lib/ararss"
+require "./lib/ararss"
 
 RSpec.configure do |config|
   config.mock_framework = :rspec
