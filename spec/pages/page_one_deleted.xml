@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>ARA Wanted RSS Feed</title>
+    <link>http://ara.kaist.ac.kr/board/Wanted/</link>
+    <description>News at ARA Wanted Board</description>
+    <item>
+      <title>-- Deleted --
+                    
+                    [5]</title>
+      <link>http://ara.kaist.ac.kr/board/Wanted/263890</link>
+      <pubDate>Tue, 06 Dec 2011 00:00:00 +0900</pubDate>
+      <guid isPermaLink="false">263890</guid>
+      <dc:date>2011-12-06T00:00:00+09:00</dc:date>
+    </item>
+  </channel>
+</rss>
