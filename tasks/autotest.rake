@@ -1,3 +1,3 @@
 task :autotest do
-  sh "autotest"
+  sh "bundle exec autotest"
 end
