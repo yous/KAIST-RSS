@@ -2,10 +2,6 @@ require "mechanize"
 require "fakeweb"
 require "./lib/ararss"
 
-RSpec.configure do |config|
-  config.mock_framework = :rspec
-end
-
 describe "ARA RSS" do
   it "gets the first page of ARA board and parse" do
     stream = File.read("./spec/pages/fake_ara_page.html")
