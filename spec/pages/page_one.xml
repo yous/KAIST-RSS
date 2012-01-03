@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>ARA Wanted RSS Feed</title>
+    <link>http://ara.kaist.ac.kr/board/Wanted/</link>
+    <description>News at ARA Wanted Board</description>
+    <item>
+      <title>신축2일반 이랑 신축2원룸 교환하실분 계신가요??</title>
+      <link>http://ara.kaist.ac.kr/board/Wanted/274232</link>
+      <pubDate>Tue, 03 Jan 2012 00:00:00 +0900</pubDate>
+      <guid isPermaLink="false">274232</guid>
+      <dc:date>2012-01-03T00:00:00+09:00</dc:date>
+    </item>
+  </channel>
+</rss>
