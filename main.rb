@@ -1,9 +1,11 @@
 require "webrick"
 require "./lib/ararss"
 
-server = WEBrick::HTTPServer.new :Port => (ARGV[1] or 8888).to_i
+server = WEBrick::HTTPServer.new :Port => (ARGV[0] or 8888).to_i
 
 server.mount_proc("/") do |req, res|
+  board = req.query["board"]
+
   res["Last-Modified"] = Time.now
   res["Cache-Control"] = "no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
   res["Pragma"] = "no-cache"
@@ -12,7 +14,7 @@ server.mount_proc("/") do |req, res|
   res.status = 200
   res["Content-Type"] = "text/xml"
 
-  rss = ARA_RSS.new(ARGV[0] || "Wanted")
+  rss = ARA_RSS.new(board || "Wanted")
   res.body = rss.data
 end
 
