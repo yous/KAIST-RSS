@@ -7,7 +7,9 @@ describe "ARA RSS" do
     ["deleted", "one", "one_deleted", "none", "none_2", "trouble"].each do |attr|
       it "#{attr} article(s) and parse" do
         stream = File.read("./spec/pages/page_#{attr}.html")
-        FakeWeb.register_uri(:get, "http://ara.kaist.ac.kr/board/Wanted/", :body => stream, :content_type => "text/html")
+        (1..3).each do |page_no|
+          FakeWeb.register_uri(:get, "http://ara.kaist.ac.kr/board/Wanted/?page_no=#{page_no}", :body => (page_no == 1) ? stream : "", :content_type => "text/html")
+        end
 
         rss = ARA_RSS.new
         rss.data.should eq(File.read("./spec/pages/page_#{attr}.xml"))

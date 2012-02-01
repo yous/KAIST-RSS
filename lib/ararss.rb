@@ -25,16 +25,18 @@ class ARA_RSS
       m.items.do_sort = true
 
       a = Mechanize.new
-      resp = a.get "http://ara.kaist.ac.kr/#{@url}/"
-      resp.search('//table[@class="articleList"]/tbody/tr').each do |r|
-        if r.inner_html.strip != ""
-          m.items.new_item do |item|
-            title = (r.at('td[@class="title "]') or r.at('td[@class="title  deleted"]'))
-            item.title = title.inner_text.strip
-            item.date = Time.parse(r.at('td[@class="date"]').inner_html.strip)
-            item.guid.content = r.at('td[@class="articleid hidden"]').inner_text.strip
-            item.guid.isPermaLink = false
-            item.link = "http://ara.kaist.ac.kr/#{@url}/#{item.guid.content}"
+      (1..3).each do |page_no|
+        resp = a.get "http://ara.kaist.ac.kr/#{@url}/?page_no=#{page_no}"
+        resp.search('//table[@class="articleList"]/tbody/tr').each do |r|
+          if r.inner_html.strip != ""
+            m.items.new_item do |item|
+              title = (r.at('./td[@class="title "]') or r.at('./td[@class="title  deleted"]'))
+              item.title = title.inner_text.strip
+              item.date = Time.parse(r.at('./td[@class="date"]').inner_html.strip)
+              item.guid.content = r.at('./td[@class="articleid hidden"]').inner_text.strip
+              item.guid.isPermaLink = false
+              item.link = "http://ara.kaist.ac.kr/#{@url}/#{item.guid.content}"
+            end
           end
         end
       end
