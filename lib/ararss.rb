@@ -31,7 +31,7 @@ class ARA_RSS
           if r.inner_html.strip != ""
             m.items.new_item do |item|
               title = (r.at('./td[@class="title "]') or r.at('./td[@class="title  deleted"]'))
-              item.title = title.inner_text.strip
+              item.title = title.inner_text.strip.gsub("<", "＜").gsub(">", "＞")
               item.date = Time.parse(r.at('./td[@class="date"]').inner_html.strip)
               item.guid.content = r.at('./td[@class="articleid hidden"]').inner_text.strip
               item.guid.isPermaLink = false
