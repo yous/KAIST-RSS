@@ -1,3 +1,0 @@
-require "autotest"
-require "autotest/bundler"
-require "autotest/timestamp"

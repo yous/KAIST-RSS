@@ -1,0 +1,23 @@
+<div id="wrap">
+  <h3 id="title"><img src="http://ara.kaist.ac.kr/media/image/stealBlue/i_signin_bi.png" title="ARA"/> RSS Service</h3>
+  <div id="service">
+    <ul id="menu">
+      <% menus = get_menu %>
+      <% menus.each do |menu| %>
+        <li id="menu<%= menu["index"] %>"><%= get_title(menu["index"]) %></li>
+      <% end %>
+    </ul>
+    <% menus.each do |menu| %>
+      <div id="submenu<%= menu["index"] %>">
+        <% menu["submenu"].each do |submenu| %>
+          <a href="/rss?board=<%= submenu["url"] %>"><%= submenu["title"] %></a><br/>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div id="explain">
+    <p>GoN에서 ARA를 파싱하여 만든 RSS입니다.</p>
+    <p>단, 로그인해야 글을 볼 수 있으므로, 제목만 제공합니다.</p>
+  </div>
+  <div id="copy">Powered by <b>GoN</b><br/></div>
+</div>

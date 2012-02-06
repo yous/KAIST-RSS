@@ -1,7 +1,7 @@
-require "rubygems"
+#!/usr/bin/env rake
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-FileList[File.dirname(__FILE__) + "/tasks/*.rake"].each do |rakefile|
-  load rakefile
-end
+require File.expand_path('../config/application', __FILE__)
 
-task :default => :autotest
+RssAra::Application.load_tasks
