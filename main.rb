@@ -13,7 +13,7 @@ server.mount_proc("/") do |req, res|
   res["Expires"] = Time.now - 100 ** 4
 
   res.status = 200
-  res["Content-Type"] = "text/xml"
+  res["Content-Type"] = "application/xml; charset=utf-8"
 
   rss = ARA_RSS.new(board || "Wanted")
   res.body = rss.data
