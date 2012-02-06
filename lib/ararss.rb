@@ -23,7 +23,6 @@ class ARA_RSS
       m.channel.title = (@board == "all") ? "ARA RSS Feed" : "ARA #{@board} RSS Feed"
       m.channel.link = "http://ara.kaist.ac.kr/#{@url}/"
       m.channel.description = (@board == "all") ? "News at ARA Board" : "News at ARA #{@board} Board"
-      m.items.do_sort = true
 
       a = Mechanize.new
       (1..3).each do |page_no|
