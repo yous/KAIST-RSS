@@ -2,20 +2,26 @@
 
 module HomeHelper
   def get_menu
-    menus = [{"index" => 0, "submenu" => [{"url" => "all", "title" => "모아보기"}]}]
+    menus = {"link" => [], "category" => []}
     a = Mechanize.new
     resp = a.get "http://ara.kaist.ac.kr/main/"
-    resp.search('//div[@id="navigation"]/ul[@class="menu"]/li/a[@class="category"]').each do |r|
+    resp.search('//div[@id="navigation"]/ul[@class="menu"]/li/a').each do |r|
       menu = Hash.new
-      menu["index"] = $1.to_i if r.attr("id") =~ /menuCategory(\d+)/
-      menu["submenu"] = []
-      resp.search("//dl[@id=\"boardInCategory#{menu["index"]}\"]/dd/ul/li/a").each do |sub_r|
-        submenu = Hash.new
-        submenu["url"] = $1 if sub_r.attr("href") =~ /\/board\/([\w\W]*)\//
-        submenu["title"] = sub_r.inner_html.strip
-        menu["submenu"].push(submenu)
+      if r.attr("id") == "menuFavorite"
+        menu["index"] = 0
+        menu["url"] = $1 if r.attr("href") =~ /\/([\w\W]*)\//
+        menus["link"].push(menu)
+      else
+        menu["index"] = $1.to_i if r.attr("id") =~ /menuCategory(\d+)/
+        menu["submenu"] = []
+        resp.search("//dl[@id=\"boardInCategory#{menu["index"]}\"]/dd/ul/li/a").each do |sub_r|
+          submenu = Hash.new
+          submenu["url"] = $1 if sub_r.attr("href") =~ /\/board\/([\w\W]*)\//
+            submenu["title"] = sub_r.inner_html.strip
+          menu["submenu"].push(submenu)
+        end
+        menus["category"].push(menu)
       end
-      menus.push(menu)
     end
     menus
   end

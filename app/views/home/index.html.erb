@@ -3,11 +3,14 @@
   <div id="service">
     <ul id="menu">
       <% menus = get_menu %>
-      <% menus.each do |menu| %>
+      <% menus["link"].each do |menu| %>
+        <a class="menu<%= menu["index"] %>" href="/rss?board=<%= menu["url"] %>"><%= get_title(menu["index"]) %></a>
+      <% end %>
+      <% menus["category"].each do |menu| %>
         <li id="menu<%= menu["index"] %>"><%= get_title(menu["index"]) %></li>
       <% end %>
     </ul>
-    <% menus.each do |menu| %>
+    <% menus["category"].each do |menu| %>
       <div id="submenu<%= menu["index"] %>">
         <% menu["submenu"].each do |submenu| %>
           <a href="/rss?board=<%= submenu["url"] %>"><%= submenu["title"] %></a><br/>
