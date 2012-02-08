@@ -13,6 +13,9 @@ html, body {
   font-family: "Malgun Gothic", Dotum, sans-serif;
   background-color: $navy;
 }
+a {
+  color: $link;
+}
 #wrap {
   width: 100%;
   max-width: 800px;
@@ -48,7 +51,6 @@ html, body {
   div {
     display: none;
     a {
-      color: $link;
       text-decoration: none;
       line-height: 200%;
     }
