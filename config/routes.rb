@@ -1,8 +1,8 @@
 RssAra::Application.routes.draw do
   get "rss" => "rss#index", :defaults => { :format => "xml" }
-  get "rss/index"
+  #get "rss/index"
 
-  get "home/index"
+  #get "home/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
