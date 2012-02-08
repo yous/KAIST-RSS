@@ -11,7 +11,7 @@
       <% end %>
     </ul>
     <% menus["category"].each do |menu| %>
-      <div id="submenu<%= menu["index"] %>">
+      <div id="submenu<%= menu["index"] %>" class="submenu">
         <% menu["submenu"].each do |submenu| %>
           <a href="/rss?board=<%= submenu["url"] %>" target="_blank"><%= submenu["title"] %></a><br/>
         <% end %>

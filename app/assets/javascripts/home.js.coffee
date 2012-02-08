@@ -5,7 +5,7 @@
 $(document).ready ->
   for menu_li in $("#menu li")
     menu_li.onclick = ->
-      submenus = $("#service div")
+      submenus = $(".submenu")
       submenu = $("#submenu" + (this.id)[4..-1])
       if submenu.css("display") == "none"
         submenu_div.style.display = "none" for submenu_div in submenus
