@@ -1,0 +1,47 @@
+// Place all the styles related to the credit controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$lightgray: #EEE;
+$gray: #888;
+$navy: #036;
+$link: #06E;
+
+html, body {
+  margin: 0 auto;
+  padding: 0;
+  font-family: "Malgun Gothic", Dotum, sans-serif;
+  background-color: skyblue;
+  text-align: center;
+}
+a {
+  color: $link;
+}
+#wrap {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px 0 20px 0;
+  border-radius: 20px;
+}
+#title {
+  margin: 20px 0 20px 0;
+  padding: 5px 0 5px 0;
+  width: 100%;
+  background-color: $navy;
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 0 5px 2px darkblue;
+}
+#intro {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 10px 50px 10px 50px;
+  background-color: $lightgray;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 2px $gray;
+  img {
+    max-width: 300px;
+  }
+}

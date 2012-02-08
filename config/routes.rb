@@ -1,4 +1,7 @@
 RssAra::Application.routes.draw do
+  get "credit" => "credit#index"
+  #get "credit/index"
+
   get "rss" => "rss#index", :defaults => { :format => "xml" }
   #get "rss/index"
 
