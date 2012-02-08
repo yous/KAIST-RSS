@@ -4,7 +4,7 @@
     <ul id="menu">
       <% menus = get_menu %>
       <% menus["link"].each do |menu| %>
-        <a class="menu<%= menu["index"] %>" href="/rss?board=<%= menu["url"] %>"><%= get_title(menu["index"]) %></a>
+        <a class="menu<%= menu["index"] %>" href="/rss?board=<%= menu["url"] %>" target="_blank"><%= get_title(menu["index"]) %></a>
       <% end %>
       <% menus["category"].each do |menu| %>
         <li id="menu<%= menu["index"] %>"><%= get_title(menu["index"]) %></li>
@@ -13,7 +13,7 @@
     <% menus["category"].each do |menu| %>
       <div id="submenu<%= menu["index"] %>">
         <% menu["submenu"].each do |submenu| %>
-          <a href="/rss?board=<%= submenu["url"] %>"><%= submenu["title"] %></a><br/>
+          <a href="/rss?board=<%= submenu["url"] %>" target="_blank"><%= submenu["title"] %></a><br/>
         <% end %>
       </div>
     <% end %>
@@ -22,5 +22,5 @@
     <p>GoN에서 ARA를 파싱하여 만든 RSS입니다.</p>
     <p>단, 로그인해야 글을 볼 수 있으므로, 제목만 제공합니다.</p>
   </div>
-  <div id="copy">Made by <a href="/credit">Yous</a> in <a href="http://gon.kaist.ac.kr">GoN</a></div>
+  <div id="copy">Made by <a href="/credit">Yous</a> in <a href="http://gon.kaist.ac.kr" target="_blank">GoN</a></div>
 </div>
