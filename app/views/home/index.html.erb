@@ -1,5 +1,13 @@
 <% content_for :head do %>
   <script type="text/javascript" src="/zeroclipboard/ZeroClipboard.js"></script>
+  <% if mobile_user_agent? %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        document.body.className += (document.body.className != "") ? " " : "";
+        document.body.className += "mobile";
+      });
+    </script>
+  <% end %>
 <% end %>
 <div id="wrap">
   <h1 id="title"><span id="gon">GoN</span> <img src="http://ara.kaist.ac.kr/media/image/stealBlue/i_signin_bi.png" title="ARA"/> RSS Service</h1>
