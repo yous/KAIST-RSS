@@ -28,6 +28,14 @@ a {
 #title {
   margin: 20px 0 20px 0;
   width: 100%;
+  font-family: "Comic Sans MS", cursive;
+  span {
+    vertical-align: middle;
+    color: firebrick;
+    font-size: 55px;
+    font-weight: 600px;
+    margin-right: 20px;
+  }
   img {
     vertical-align: middle;
   }
