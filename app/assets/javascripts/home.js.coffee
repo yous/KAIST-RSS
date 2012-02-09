@@ -3,6 +3,46 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
+  $("#wrap").css({
+    borderTopLeftRadius: "30px",
+    borderTopRightRadius: "30px",
+    borderBottomLeftRadius: "30px",
+    borderBottomRightRadius: "30px",
+    WebkitBorderTopLeftRadius: "30px",
+    WebkitBorderTopRightRadius: "30px",
+    WebkitBorderBottomLeftRadius: "30px",
+    WebkitBorderBottomRightRadius: "30px",
+    MozBorderRadius: "30px"})
+  $("#service ul a").css({
+    borderTopLeftRadius: "10px",
+    borderTopRightRadius: "10px",
+    borderBottomLeftRadius: "10px",
+    borderBottomRightRadius: "10px",
+    WebkitBorderTopLeftRadius: "10px",
+    WebkitBorderTopRightRadius: "10px",
+    WebkitBorderBottomLeftRadius: "10px",
+    WebkitBorderBottomRightRadius: "10px",
+    MozBorderRadius: "10px"})
+  $("#service ul li").css({
+    borderTopLeftRadius: "10px",
+    borderTopRightRadius: "10px",
+    borderBottomLeftRadius: "10px",
+    borderBottomRightRadius: "10px",
+    WebkitBorderTopLeftRadius: "10px",
+    WebkitBorderTopRightRadius: "10px",
+    WebkitBorderBottomLeftRadius: "10px",
+    WebkitBorderBottomRightRadius: "10px",
+    MozBorderRadius: "10px"})
+  $("#explain").css({
+    borderTopLeftRadius: "30px",
+    borderTopRightRadius: "30px",
+    borderBottomLeftRadius: "30px",
+    borderBottomRightRadius: "30px",
+    WebkitBorderTopLeftRadius: "30px",
+    WebkitBorderTopRightRadius: "30px",
+    WebkitBorderBottomLeftRadius: "30px",
+    WebkitBorderBottomRightRadius: "30px",
+    MozBorderRadius: "30px"})
   for menu_li in $("#menu li")
     menu_li.onclick = ->
       submenus = $(".submenu")

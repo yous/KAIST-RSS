@@ -22,7 +22,6 @@ a {
   margin: 50px auto;
   padding: 20px 0 20px 0;
   background-color: white;
-  border-radius: 30px;
   text-align: center;
 }
 #title {
@@ -55,7 +54,6 @@ a {
       text-decoration: none;
       cursor: pointer;
       background-color: $lightgray;
-      border-radius: 10px;
     }
   }
 }
@@ -72,7 +70,6 @@ a {
   margin: 20px auto;
   padding: 10px 50px 10px 50px;
   background-color: $lightgray;
-  border-radius: 30px;
   box-shadow: 0 0 10px 2px $gray;
   text-align: left;
 }

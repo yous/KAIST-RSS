@@ -22,14 +22,12 @@ a {
   max-width: 500px;
   margin: auto;
   padding: 20px 0 20px 0;
-  border-radius: 20px;
 }
 #title {
   margin: 20px 0 20px 0;
   padding: 5px 0 5px 0;
   width: 100%;
   background-color: $navy;
-  border-radius: 15px;
   color: white;
   box-shadow: 0 0 5px 2px darkblue;
 }
@@ -39,7 +37,6 @@ a {
   margin: 20px auto;
   padding: 10px 50px 10px 50px;
   background-color: $lightgray;
-  border-radius: 20px;
   box-shadow: 0 0 10px 2px $gray;
   img {
     max-width: 300px;
