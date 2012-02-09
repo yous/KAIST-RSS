@@ -1,10 +1,9 @@
-<% content_for :head do %>
-  <script type="text/javascript" src="/zeroclipboard/ZeroClipboard.js"></script>
-  <% if mobile_user_agent? %>
+<% if not mobile_user_agent? %>
+  <% content_for :head do %>
+    <script type="text/javascript" src="/zeroclipboard/ZeroClipboard.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        document.body.className += (document.body.className != "") ? " " : "";
-        document.body.className += "mobile";
+        clip_init();
       });
     </script>
   <% end %>

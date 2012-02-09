@@ -12,7 +12,7 @@ $(document).ready ->
         submenu.css("display", "block")
       else
         submenu_div.style.display = "none" for submenu_div in submenus
-  clip_init = ->
+  window.clip_init = ->
     ZeroClipboard.setMoviePath("/zeroclipboard/ZeroClipboard.swf")
     if $(".mobile").length == 0
       for menu_link in $("#menu .menu0")
@@ -34,4 +34,3 @@ $(document).ready ->
           )
           clip.glue(submenu_a, submenu_a.parentNode)
         submenu.style.display = "none"
-  clip_init()
