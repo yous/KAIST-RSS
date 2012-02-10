@@ -46,7 +46,7 @@ $(document).ready ->
   for menu_li in $("#menu li")
     menu_li.onclick = ->
       submenus = $(".submenu")
-      submenu = $("#submenu" + (this.id)[4..-1])
+      submenu = $("#submenu" + (this.id)["menu".length..-1])
       if submenu.css("display") == "none"
         submenu_div.style.display = "none" for submenu_div in submenus
         submenu.css("display", "block")
@@ -55,7 +55,7 @@ $(document).ready ->
   window.clip_init = ->
     ZeroClipboard.setMoviePath("/zeroclipboard/ZeroClipboard.swf")
     if $(".mobile").length == 0
-      for menu_link in $("#menu .menu0")
+      for menu_link in $("#menu a")
         clip = new ZeroClipboard.Client()
         clip.setHandCursor(true)
         clip.setText(menu_link.href)
