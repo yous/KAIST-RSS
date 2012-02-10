@@ -1,4 +1,4 @@
-RssAra::Application.routes.draw do
+KaistRss::Application.routes.draw do
   get "credit" => "credit#index"
   #get "credit/index"
 

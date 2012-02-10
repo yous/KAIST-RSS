@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-RssAra::Application.load_tasks
+KaistRss::Application.load_tasks
