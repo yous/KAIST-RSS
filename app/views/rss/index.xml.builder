@@ -8,7 +8,6 @@ xml.rss "version" => "2.0", "xmlns:content" => "http://purl.org/rss/1.0/modules/
   xml.channel do
     a = Mechanize.new
     resp = JSON.parse(a.get("https://portal.kaist.ac.kr/api/notice/#{board}/?format=json&page=1").body)
-    Time.zone = "Seoul"
 
     xml.title "KAIST Portal #{title}"
     xml.description "KAIST Portal #{title} RSS"
@@ -16,7 +15,7 @@ xml.rss "version" => "2.0", "xmlns:content" => "http://purl.org/rss/1.0/modules/
     resp.each do |article|
       xml.item do
         xml.title "#{article["title"]} - #{article["user"]["first_name"]} #{article["user"]["last_name"]}"
-        xml.pubDate Time.zone.parse(article["created_at"]).to_s(:rfc822)
+        xml.pubDate Time.parse(article["created_at"]).to_s(:rfc822)
         xml.link "https://portal.kaist.ac.kr/notice/#{board}/#{article["id"]}/"
         xml.guid "https://portal.kaist.ac.kr/notice/#{board}/#{article["id"]}/"
         attachments = article["attachments"].map do |file|
