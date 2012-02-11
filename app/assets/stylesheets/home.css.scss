@@ -72,6 +72,9 @@ a {
   background-color: $lightgray;
   box-shadow: 0 0 10px 2px $gray;
   text-align: left;
+  img {
+    height: 25px;
+  }
 }
 #copy {
   margin: 10px auto;
