@@ -19,9 +19,9 @@ xml.rss "version" => "2.0", "xmlns:content" => "http://purl.org/rss/1.0/modules/
         xml.link "https://portal.kaist.ac.kr/notice/#{board}/#{article["id"]}/"
         xml.guid "https://portal.kaist.ac.kr/notice/#{board}/#{article["id"]}/"
         attachments = article["attachments"].map do |file|
-          "<a href=\"https://portal.kaist.ac.kr#{file["download_path"]}\">#{file["filename"]}</a><br/>"
+          "<br/><a href=\"https://portal.kaist.ac.kr#{file["download_path"]}\">#{file["filename"]}</a>"
         end.join
-        xml.description attachments + article["content"]
+        xml.description article["content"] + attachments
       end
     end
   end
