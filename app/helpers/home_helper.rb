@@ -3,7 +3,10 @@ require "json"
 
 module HomeHelper
   def service
-    sites = {"portal" => get_menu("portal"), "noah" => get_menu("noah")}
+    @portal = RSSPage.new("portal") if @portal.nil?
+    @noah = RSSPage.new("noah") if @noah.nil?
+
+    sites = {"portal" => @portal.menus, "noah" => @noah.menus}
 
     cont1 = content_tag(:ul, :id => "menu") do
       sites.keys.each_with_index.map do |site, idx|
@@ -24,24 +27,36 @@ module HomeHelper
     cont1 << cont2
   end
 
-  def get_menu(site)
-    a = Mechanize.new
-    if site == "portal"
-      resp = JSON.parse(a.get("https://portal.kaist.ac.kr/api/notice/?format=json").body)
-      menus = resp.map do |board|
-        {"title" => board["name"], "url" => board["slug"]}
-      end
-      menus
-    elsif site == "noah"
-      a.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  class RSSPage
+    def initialize(site)
+      @site = site
+    end
 
-      menus = []
-      resp = a.get "https://noah.haje.org/course"
-      resp.search('//div[@id="body"]/table/tr[@class!="head"]').each do |r|
-        board = r.at('./td[2]/a')
-        menus.push({"title" => board.inner_html.strip, "url" => ($1 if board.attr("href") =~ /\/course\/([\w\W]*)/)})
+    def menus
+      get_menu if Rails.cache.read(@site).nil?
+      Rails.cache.read(@site)
+    end
+
+    private
+    def get_menu
+      a = Mechanize.new
+      if @site == "portal"
+        resp = JSON.parse(a.get("https://portal.kaist.ac.kr/api/notice/?format=json").body)
+        menus = resp.map do |board|
+          {"title" => board["name"], "url" => board["slug"]}
+        end
+        Rails.cache.write(@site, menus, :expires_in => 1.minutes)
+      elsif @site == "noah"
+        a.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        menus = []
+        resp = a.get "https://noah.haje.org/course"
+        resp.search('//div[@id="body"]/table/tr[@class!="head"]').each do |r|
+          board = r.at('./td[2]/a')
+          menus.push({"title" => board.inner_html.strip, "url" => ($1 if board.attr("href") =~ /\/course\/([\w\W]*)/)})
+        end
+        Rails.cache.write(@site, menus, :expires_in => 1.minutes)
       end
-      menus
     end
   end
 end
