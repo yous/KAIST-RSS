@@ -30,11 +30,12 @@ module HomeHelper
   class RSSPage
     def initialize(site)
       @site = site
+      @time = Time.now
     end
 
     def menus
-      get_menu if Rails.cache.read(@site).nil?
-      Rails.cache.read(@site)
+      get_menu if @page.nil? or (Time.now - @time >= 60)
+      @page
     end
 
     private
@@ -45,7 +46,8 @@ module HomeHelper
         menus = resp.map do |board|
           {"title" => board["name"], "url" => board["slug"]}
         end
-        Rails.cache.write(@site, menus, :expires_in => 1.minutes)
+        @page = menus
+        @time = Time.now
       elsif @site == "noah"
         a.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
@@ -55,7 +57,8 @@ module HomeHelper
           board = r.at('./td[2]/a')
           menus.push({"title" => board.inner_html.strip, "url" => ($1 if board.attr("href") =~ /\/course\/([\w\W]*)/)})
         end
-        Rails.cache.write(@site, menus, :expires_in => 1.minutes)
+        @page = menus
+        @time = Time.now
       end
     end
   end
