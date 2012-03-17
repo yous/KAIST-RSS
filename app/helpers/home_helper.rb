@@ -5,8 +5,9 @@ module HomeHelper
   def service
     @portal = RSSPage.new("portal") if @portal.nil?
     @noah = RSSPage.new("noah") if @noah.nil?
+    @times = RSSPage.new("times") if @times.nil?
 
-    sites = {"portal" => @portal.menus, "noah" => @noah.menus}
+    sites = {"portal" => @portal.menus, "noah" => @noah.menus, "times" => @times.menus}
 
     cont1 = content_tag(:ul, :id => "menu") do
       sites.keys.each_with_index.map do |site, idx|
@@ -20,6 +21,8 @@ module HomeHelper
             link_to(menu["title"], {:controller => "rss", :board => menu["url"], :title => menu["title"]}, :target => "_blank") + tag("br")
           elsif site == "noah"
             link_to(menu["title"], "https://noah.haje.org/course/#{menu["url"]}/+rss", :target => "_blank") + tag("br")
+          elsif site == "times"
+            link_to(menu["title"], "http://times.kaist.ac.kr/rss/#{menu["url"]}", :target => "_blank") + tag("br")
           end
         end.reduce(:<<)
       end
@@ -56,6 +59,12 @@ module HomeHelper
         resp.search('//div[@id="body"]/table/tr[@class!="head"]').each do |r|
           board = r.at('./td[2]/a')
           menus.push({"title" => board.inner_html.strip, "url" => ($1 if board.attr("href") =~ /\/course\/([\w\W]*)/)})
+        end
+        @page = menus
+        @time = Time.now
+      elsif @site == "times"
+        menus = a.get("http://times.kaist.ac.kr/rss/").search('//table/tr/td/table[4]/tr[2]/td/table/tr[2]/td/table/tr[2]/td/table/tr[position()>=2]').map do |item|
+          {"title" => item.at('./td[@class="rss_td2"]').inner_text, "url" => ($1 if item.at('./td[@class="click"]/a').attr("href") =~ /http:\/\/times\.kaist\.ac\.kr\/rss\/([\w\W]*)/)}
         end
         @page = menus
         @time = Time.now
