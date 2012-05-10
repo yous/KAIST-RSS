@@ -20,7 +20,7 @@ module HomeHelper
           if site == "portal"
             link_to(menu["title"], {:controller => "rss", :board => menu["url"], :title => menu["title"]}, :target => "_blank") + tag("br")
           elsif site == "noah"
-            link_to(menu["title"], "https://noah.haje.org/course/#{menu["url"]}/+rss", :target => "_blank") + tag("br")
+            link_to(menu["title"], "https://noah.haje.org/#{menu["url"]}/+rss", :target => "_blank") + tag("br")
           elsif site == "times"
             link_to(menu["title"], "http://times.kaist.ac.kr/rss/#{menu["url"]}", :target => "_blank") + tag("br")
           end
@@ -55,10 +55,18 @@ module HomeHelper
         a.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
         menus = []
-        resp = a.get "https://noah.haje.org/course"
-        resp.search('//div[@id="body"]/table/tr[@class!="head"]').each do |r|
-          board = r.at('./td[2]/a')
-          menus.push({"title" => board.inner_html.strip, "url" => ($1 if board.attr("href") =~ /\/course\/([\w\W]*)/)})
+        resp = a.get "https://noah.haje.org/garbage"
+        menus.push("title" => resp.at('//div[@id="title"]/p/a').inner_html.gsub([160].pack("U"), " ").strip, "url" => "garbage")
+        ["divisionCS", "course"].each do |site|
+          resp = a.get "https://noah.haje.org/#{site}"
+          resp.search('//div[@id="body"]/table/tr[@class!="head"]').each do |r|
+            board = r.at('./td[2]/a')
+            title = board.inner_html.gsub([160].pack("U"), " ").strip
+            if title == ""
+              title = $1 if board.attr("href") =~ /\/#{site}\/([\w\W]*)/
+            end
+            menus.push({"title" => title, "url" => ($1 if board.attr("href") =~ /\/(#{site}\/[\w\W]*)/)})
+          end
         end
         @page = menus
         @time = Time.now
