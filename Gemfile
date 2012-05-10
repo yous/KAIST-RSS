@@ -41,5 +41,5 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'therubyracer'
-gem 'mechanize', git: 'git://github.com/caribio/mechanize.git'
+gem 'mechanize'
 gem 'heroku'
