@@ -37,7 +37,7 @@ module HomeHelper
     end
 
     def menus
-      get_menu if @page.nil? or (Time.now - @time >= 60)
+      get_menu if @page.nil? or (Time.now - @time >= 60 * 60 * 24)
       @page
     end
 
